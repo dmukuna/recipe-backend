@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 app.post('/api/recipes', (req, res, next) => {
     const recipe = new Recipe({
