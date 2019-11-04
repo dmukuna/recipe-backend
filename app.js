@@ -10,11 +10,11 @@ const app = express();
 
 mongoose.connect('mongodb+srv://student:zs79D5dqfQ6HbOhe@cluster0-bvkpp.mongodb.net/test?retryWrites=true&w=majority')
     .then(() => {
-    console.log('Successfully connected to MongoDB Atlas!');
+        console.log('Successfully connected to MongoDB Atlas!');
     })
     .catch((error) => {
-    console.log('Unable to connect to MongoDB Atlas!');
-    console.error(error);
+        console.log('Unable to connect to MongoDB Atlas!');
+        console.error(error);
     });
 
 app.use((req, res, next) => {
