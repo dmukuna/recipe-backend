@@ -4,10 +4,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const Recipe = require('./models/recipe');
 
 const app = express();
-
-const Recipe = require('./models/recipe');
 
 mongoose.connect('mongodb+srv://student:zs79D5dqfQ6HbOhe@cluster0-bvkpp.mongodb.net/test?retryWrites=true&w=majority')
     .then(() => {
@@ -25,7 +24,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 app.post('/api/recipes', (req, res, next) => {
     const recipe = new Recipe({
@@ -53,7 +52,7 @@ app.get('/api/recipes/:id', (req, res, next) => {
         _id: req.params.id
     })
     .then((recipe) => {
-        res.status(200).json(thing);
+        res.status(200).json(recipe);
     })
     .catch((error) => {
         res.status(404).json({
@@ -98,7 +97,7 @@ app.delete('/api/recipes/:id', (req, res, next) => {
     });
 });
 
-app.use('/api/recipes', (req, res, next) => {
+app.get('/api/recipes', (req, res, next) => {
     Recipe.find()
     .then((recipe) => {
         res.status(200).json(recipe);
